@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Header from './components/header/header';
+import Sidebar from './components/sidebar/sidebar';
 import GlobalStyle, { Button, Container } from './globalStyle';
 
 
 function App() {
+ 
+
   return (
     <>
     <GlobalStyle />
     <Container>
-    <Button 
+    {/* <Button 
     color="white" 
     bottom="16px" 
     top="16px" 
@@ -18,7 +22,8 @@ function App() {
     background="blue"
     border="4px" 
     
-    >Sign</Button>
+    >Sign</Button> */}
+    <Header />
     </Container>
     </>
   );
