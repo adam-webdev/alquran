@@ -1,22 +1,36 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
+import { FiBookmark } from "react-icons/fi";
+import { FaQuran } from "react-icons/fa";
+import { A } from '../../globalStyle';
 
-function Sidebar(props){
-    
+function Sidebar(){
+    const slide = keyframes`
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(480px);
+    }
+    `;
+ 
     const WrappSidebar = styled('div')`
         width:280px;
         height:90vh;
         top:0;
-        left:${props => props.open ? props.open : '-480px'};
+        left:0;
+        margin-left:-480px;
         margin-top:-75px;
         position: fixed;
         background:#E5E5E5;
-        transition:1.2s ease-in;
-        transform:translateX(${props => props.open ? props.open : "480px"});
+        animation:1s ${slide} ease;
+        transform:translateX(480px);
         padding:160px 18px;
     `
+  
+    
     const Ul = styled('ul')`
         display:grid;
         grid-template-rows:40px 40px 40px;
@@ -32,11 +46,20 @@ function Sidebar(props){
         }
         
     `
+   
     const IconMenu = styled(MdFavoriteBorder)`
         width:20px;
         height:20px;
     `
+    const Quran = styled(FaQuran)`
+        width:20px;
+        height:20px;
+    `
     const Setting = styled(IoSettingsOutline)`
+        width:20px;
+        height:20px;
+    `
+    const Bookmark = styled(FiBookmark)`
         width:20px;
         height:20px;
     `
@@ -47,22 +70,31 @@ function Sidebar(props){
     return(
         <WrappSidebar>
             <Ul>
-                <Li>
-                    <IconMenu />
-                    <TitleMenu>Favorite</TitleMenu> 
-                </Li>
-                <Li>
-                    <Setting />
-                    <TitleMenu>Pengaturan</TitleMenu> 
-                </Li>
-                <Li>
-                    <IconMenu />
-                    <TitleMenu>Favorite</TitleMenu> 
-                </Li>
-                <Li>
-                    <IconMenu />
-                    <TitleMenu>Favorite</TitleMenu> 
-                </Li>
+                <A to="/daftar-surah">
+                    <Li>
+                        <Quran />
+                        <TitleMenu>Daftar Surah</TitleMenu>
+                    </Li>
+                </A>  
+                
+                <A to="/tersimpan">
+                    <Li>
+                        <Bookmark />
+                        <TitleMenu>Tersimpan</TitleMenu>
+                    </Li>
+                </A>
+                <A to="/favorite">
+                    <Li>
+                        <IconMenu />
+                        <TitleMenu>Favorite</TitleMenu>
+                    </Li>
+                </A>
+                <A to="/pengaturan">
+                    <Li>
+                        <Setting />
+                        <TitleMenu>Pengaturan</TitleMenu>
+                    </Li>
+                </A> 
             </Ul>
         </WrappSidebar>
     )

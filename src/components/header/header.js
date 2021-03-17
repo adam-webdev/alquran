@@ -4,8 +4,9 @@ import { FiSearch } from "react-icons/fi";
 import { HiMenu } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import Sidebar from '../sidebar/sidebar';
+import { A } from '../../globalStyle';
 
-function Header(props){
+function Header(){
     const[open, isOpen] = useState(false);
     const sidebar = () => isOpen(!open);
     const WrappHeader = styled("div")`
@@ -14,12 +15,15 @@ function Header(props){
         align-items:center;
         position: fixed;
         width:540px;
-        margin-left:330px;
-        /* margin-right:; */
+        margin-left:auto;
+        margin-right:auto;
         z-index:3;
         height:50px;
+        color:#fff;
+        border-radius:4px;
         padding:8px 12px;
-        background:#fdfdfd;
+
+        background:#31b049;
         border:1px solid #ddd;
         @media screen and (max-width:768px){
             margin-left:0;
@@ -35,20 +39,20 @@ function Header(props){
     const Menu = styled(HiMenu)`
         width:24px;
         height:24px;
+        font-weight:800;
         cursor: pointer;
         &:hover{
         transition:.2s ease-in;
-            color:green;
+            color:#010101;
         }
     `
     const Close = styled(CgClose)`
         width:24px;
         height:24px;
-        z-index:999;
+        z-index:999999;
         cursor: pointer;
         &:hover{
         transition:.2s ease-in;
-
             color:green;
         }
     `
@@ -58,18 +62,24 @@ function Header(props){
         cursor: pointer;
         &:hover{
         transition:.2s ease-in;
-            color:green;
+        color:#010101;
         }
+    `
+    const TextQuran = styled('h4')`
+        color:#fff;
+        font-size:1.6em;
+        font-weight:500;
+        font-family:'Poppins' sans-serif;
     `
 
     return(
         <>
         <WrappHeader>
-             <Icon onClick={sidebar}>
+            <Icon onClick={sidebar}>
                 {open ? <Close /> : <Menu />}
-                {open ? <Sidebar open={open} /> : ''}
+                {open ? <Sidebar /> : '' }
             </Icon>
-           <h3>quran</h3>
+           <A to="/"><TextQuran> quran</TextQuran></A>
            <Search />
         </WrappHeader>
         </>
