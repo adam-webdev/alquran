@@ -14,8 +14,8 @@ const GlobalStyle = createGlobalStyle`
     }
     `
     export const Container = styled('div')`
-        margin-left:400px;
-        margin-right:400px;
+        margin-left:350px;
+        margin-right:350px;
         @media (max-width: 540px){
             margin-left:0;
             margin-right:0;
@@ -25,10 +25,12 @@ const GlobalStyle = createGlobalStyle`
     export const WrappMain = styled('div')`
       width:540px;
       top:80px;
-      box-sizing:border-box;
       position: relative;
       height:auto;
       display:flex;
+      padding-left:16px;
+      padding-right:16px;
+      box-sizing:border-box!important;
       flex-direction:column;
       @media screen and (max-width:768px){
           margin-left:0;

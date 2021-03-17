@@ -4,12 +4,20 @@ import { A, Card, WrappMain } from '../../globalStyle'
 
 function DaftarSurah(){
     const [ data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     async function apiquran(){
-        const res = await fetch('https://api.quran.sutanlab.id/surah')
-        const json = await res.json()    
-        // console.log("JSON:" + json.data.surahs)
-        setData(json.data)
+        setLoading(true)
+        try{
+            const res = await fetch('https://api.quran.sutanlab.id/surah')
+            const json = await res.json()    
+            setData(json.data)
+        } catch (error) {
+            setError(true)
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -24,7 +32,6 @@ function DaftarSurah(){
         flex-direction:row;
         justify-content:space-between;
         transition:.2s ease;
-        padding: 12px 12px;
         cursor:pointer;
         &:hover{
             box-shadow: 4px 4px 8px 4px #d1d1d1;
@@ -75,26 +82,26 @@ function DaftarSurah(){
         color:#555;
         font-size:14px;
     ` 
+        console.log("dirender")
     return(
         <>
         <WrappMain>
         <Title>Daftar Surah</Title>
-            {
-                data.map((sura) => {
-                     return(
-                            <A  key={sura.number} to={`/detail-surah/${sura.number}`}>
-                                <CardSurah> 
-                                <NomorSurah>{sura.number}</NomorSurah>
-                                    <Surah>
-                                        <NameSurah>{sura.name.short}</NameSurah>
-                                        <EnglishName>{sura.name.transliteration.id} ({sura.numberOfVerses} ayat) </EnglishName>
-                                        <EnglishTranslation>{sura.name.translation.id}</EnglishTranslation>
-                                    </Surah>
-                                </CardSurah>
-                            </A>
-                         )
-                })
-            }  
+            {error && <p>Mohon Maaf Server Sedang Gangguan </p>}
+            {loading ? (<p>Memuat data... </p>)
+            : ( data.map((sura) => (
+                        <A  key={sura.number} to={`/detail-surah/${sura.number}`}>
+                            <CardSurah> 
+                            <NomorSurah>{sura.number}</NomorSurah>
+                                <Surah>
+                                    <NameSurah>{sura.name.short}</NameSurah>
+                                    <EnglishName>{sura.name.transliteration.id} ({sura.numberOfVerses} ayat) </EnglishName>
+                                    <EnglishTranslation>{sura.name.translation.id}</EnglishTranslation>
+                                </Surah>
+                            </CardSurah>
+                        </A>
+                ))
+            )}  
         </WrappMain>
         </>
 
