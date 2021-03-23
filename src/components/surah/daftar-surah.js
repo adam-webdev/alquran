@@ -36,13 +36,11 @@ function DaftarSurah(){
         &:hover{
             box-shadow: 4px 4px 8px 4px #d1d1d1;
         }
-        @media (max-width:768px){
-            padding: 12px 12px;
-        }
+      
     `
     const NomorSurah = styled('div')`
         padding:5px;
-        width:40px;
+        width:10%;
         margin-right:40px;
         height:20px;
         display:flex;
@@ -53,9 +51,7 @@ function DaftarSurah(){
         font-size:1em;
         border-radius:4px;
         box-shadow:-2px 2px 1px 1px #fff;
-        @media ( max-width:768px){
-            margin-right:30px;
-        }
+        
     `
     const Surah = styled('div')`
         width:70%;
@@ -89,8 +85,8 @@ function DaftarSurah(){
         <Title>Daftar Surah</Title>
             {error && <p>Mohon Maaf Server Sedang Gangguan </p>}
             {loading ? (<p>Memuat data... </p>)
-            : ( data.map((sura) => (
-                        <A  key={sura.number} to={`/detail-surah/${sura.number}`}>
+            : ( data.map((sura,index) => (
+                        <A  key={index} to={`/detail-surah/${sura.number}`}>
                             <CardSurah> 
                             <NomorSurah>{sura.number}</NomorSurah>
                                 <Surah>

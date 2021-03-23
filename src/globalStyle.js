@@ -7,50 +7,46 @@ const GlobalStyle = createGlobalStyle`
         padding:0;
         margin:0;
         scroll-behavior:smooth;
+        font-size:16px;
     }
     body{
         background:#f3f3f3;
-        font-family: LPMQ Isep Misbah; 
+        font-family: LPMQ Isep Misbah;
+        font-size:16px; 
     }
     `
     export const Container = styled('div')`
-        margin-left:350px;
-        margin-right:350px;
-        @media (max-width: 540px){
+        font-size:16px;
+        position: relative;
+        display:flex;
+        padding-right:23em;
+        margin-left:23em;
+        @media screen and (max-width:900px){
             margin-left:0;
-            margin-right:0;
         }
+       
     `
     // home 
     export const WrappMain = styled('div')`
-      width:540px;
-      top:80px;
-      position: relative;
-      height:auto;
       display:flex;
-      padding-left:16px;
-      padding-right:16px;
-      box-sizing:border-box!important;
+      position: relative;
+      width:450px;
+      top:80px;
+      box-sizing:border-box;
+      font-size:15px;
       flex-direction:column;
-      @media screen and (max-width:768px){
-          margin-left:0;
-          margin-right:0;
-          padding-left:15px;
-          padding-right:15px;
-          max-width:375px;
-      }
+      @media screen and (max-width: 900px){
+            width:375px;
+        }
+     
   ` 
-    export const Card = styled('div')`
-        display:flex;
-        width:100%;
+    export const Card = styled(WrappMain)`
         top:10px;
         margin-bottom:20px;
         border-radius:4px;
         background:#f8f8f8;
         box-shadow: 1px 1px 2px 1px #d1d1d1;
-        position: relative;
-        padding: 12px 14px;
-        flex-direction:column;
+        padding:1rem;
     `
     export const A = styled(Link)`
         text-decoration:none;

@@ -17,19 +17,18 @@ function Sidebar(){
     `;
  
     const WrappSidebar = styled('div')`
-        width:280px;
+        width:250px;
         height:90vh;
         top:0;
         left:0;
         margin-left:-480px;
         margin-top:-75px;
         position: fixed;
-        background:#E5E5E5;
+        background:#fff;
         animation:1s ${slide} ease;
         transform:translateX(480px);
         padding:160px 18px;
     `
-  
     
     const Ul = styled('ul')`
         display:grid;
@@ -38,6 +37,10 @@ function Sidebar(){
     `
     const Li = styled('li')`
         display:grid;
+        padding:4px 14px;
+        border-radius:20px;
+        background:#e1f7e4;
+        color:#31b052;
         align-items:center;
         grid-template-columns:30px auto;
         grid-column-gap:10px;

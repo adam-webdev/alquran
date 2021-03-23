@@ -42,7 +42,6 @@ function App() {
       <Container>
         <Header />
         <Routing />
-
       </Container>
     </Router>
   );
