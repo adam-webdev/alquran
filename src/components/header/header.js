@@ -20,7 +20,6 @@ function Header(){
         border-radius:4px;
         height:50px;
         color:#fff;
-        margin-bottom:10px;
         background:#31b049;
         @media (max-width:900px){
             border-radius:0;
@@ -47,10 +46,10 @@ function Header(){
         width:18px;
         height:18px;
         z-index:999999;
+        color:#fff;
         cursor: pointer;
         &:hover{
         transition:.2s ease-in;
-            color:green;
         }
     `
     const Search = styled(FiSearch)`

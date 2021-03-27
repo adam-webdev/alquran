@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Card, WrappMain } from '../../globalStyle'
+import { Card, Share, SharedIcon, TextQuran, WrappMain } from '../../globalStyle'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { GiShare } from "react-icons/gi";
 import { MdFavoriteBorder } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
-import { BsArrowRight } from "react-icons/bs";
 import NotFounds from "../img/nf.svg"
+import {FacebookIcon,WhatsappIcon,TwitterIcon,TelegramIcon, FacebookShareButton, TelegramShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
 
 
 function DetailSurah(){
     const [data, setData] = useState()
     const [tafsir, setTafsir] = useState(false)
     const [terjemah, setTerjemah] = useState(false)
+    const [share, setShare] = useState(false)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const {id} = useParams();
@@ -20,6 +20,10 @@ function DetailSurah(){
     const handleTafsir = () => {
         console.log("ok")
         setTafsir(!tafsir);
+    }
+    const handleShare = () => {
+        console.log("ok")
+        setShare(!share);
     }
     const handleTerjemah = () => {
         console.log("ok")
@@ -48,19 +52,7 @@ function DetailSurah(){
     },[]);
 
     console.log("error => " + error)
-    const Share = styled(GiShare)`
-        width:24px;
-        height:24px;
-        cursor: pointer;
-        color:#6a6a6a;
-        padding:5px;
-        &:hover{
-            background:#e1f7e4;
-            color:#31b052;
-            border-radius:50%;
-            transition:.4s;
-        }
-    `
+  
     
   
     const IconMenu = styled(MdFavoriteBorder)`
@@ -106,14 +98,7 @@ function DetailSurah(){
         height:auto;
         flex-direction:column;
     `
-    const TextQuran = styled('h1')`
-        font-size:2rem;
-        line-height:60px;
-        text-align:end;
-        padding:10px 10px;
-        font-weight:normal;
-        margin-bottom:20px;
-    `
+ 
     const Ayat = styled('p')`
         color:#6a6a6a;
         text-align:center;
@@ -123,6 +108,7 @@ function DetailSurah(){
         font-size:1rem;
         padding:12px 10px;
         font-weight:normal;
+        text-indent:${props => props.indent ? '50px' : '0'};
         color:${props => props.color ? '#31b052' : '#6a6a6a'};
     `
     const Detail = styled('div')`
@@ -134,6 +120,7 @@ function DetailSurah(){
     const Audio = styled('audio')`
         width:240px;
         height:34px;
+        outline:none;
         margin-right:10px;
       
     `
@@ -163,6 +150,7 @@ function DetailSurah(){
         border-radius:10px;
         cursor: pointer;
     `
+  
     if(error){
     return (
         <WrappMain>
@@ -174,7 +162,7 @@ function DetailSurah(){
     return(
         <WrappMain>
           
-            {loading ? (<p>Memuat data...</p>): 
+            {loading ? (<p>data...</p>): 
                 ( <>
                     <Detail>
                         <h2>{data.name.short}</h2>
@@ -182,22 +170,40 @@ function DetailSurah(){
                         <h5> ( {data.name.translation.id} )</h5>
                         <p>{data.revelation.id}</p>
                         <i>{data.numberOfVerses} ayat</i>
-                        <TextLatin>{data.tafsir.id}</TextLatin>
+                        <TextLatin indent>{data.tafsir.id}</TextLatin>
                     </Detail>
                     {data.verses.map((ayah,index) => {
                     return <Card key={index}>
                                 <CardHeader>
-                                        <IconMenu />
-                                        <WrappIcon>
+                                        {/* <IconMenu /> */}
+                                    <span></span>
+                                    <WrappIcon>
                                         <Audio controls={true} src={ayah.audio.primary} />
-                                        <Share />
+                                        <Share onClick={handleShare} />
+                                        {share ? (
+                                            <SharedIcon>
+                                            <FacebookShareButton 
+                                            quote={data.name.transliteration.id+ayah.text.arab+ayah.translation.id} 
+                                            onClick={handleShare} url="http://localhost:3000">
+                                                <FacebookIcon size={24} round={true}/> 
+                                            </FacebookShareButton>
+                                            <WhatsappShareButton url="http://localhost:3000/detail-surah/2" onClick={handleShare}>
+                                                <WhatsappIcon size={24} round={true}/>
+                                            </WhatsappShareButton>
+                                            <TwitterShareButton onClick={handleShare}>
+                                                <TwitterIcon size={24} round={true}/>
+                                            </TwitterShareButton>
+                                            <TelegramShareButton onClick={handleShare}>
+                                                <TelegramIcon size={24} round={true}/>
+                                            </TelegramShareButton>
+                                        </SharedIcon>
+                                        ) : ''}
                                     </WrappIcon>
                                 </CardHeader>
                                 <CardBody>
                                     <TextQuran>{ayah.text.arab}</TextQuran>
                                     <TextLatin>{ayah.text.transliteration.en}</TextLatin>
-                                    <TextLatin>{ terjemah ? `Terjemah : ` 
-                                        +  ayah.translation.id  : ''   }</TextLatin> 
+                                    <TextLatin >{ terjemah ? ayah.translation.id  : ''   }</TextLatin> 
                                 </CardBody>
                                 <Div>
                                     <A><p>Tafsir</p> <Tafsir onClick={handleTafsir} /></A>

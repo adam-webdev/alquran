@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
+import { GiShare } from "react-icons/gi";
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -10,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
         font-size:16px;
     }
     body{
-        background:#f3f3f3;
+        background:#eaeaea;
         font-family: LPMQ Isep Misbah;
         font-size:16px; 
     }
@@ -44,13 +46,52 @@ const GlobalStyle = createGlobalStyle`
         top:10px;
         margin-bottom:20px;
         border-radius:4px;
-        background:#f8f8f8;
+        background:#f9f9f9;
         box-shadow: 1px 1px 2px 1px #d1d1d1;
         padding:1rem;
+    `
+    export const TextQuran = styled('h1')`
+       font-size:2rem;
+       line-height:60px;
+       text-align:end;
+       padding:10px 10px;
+       font-weight:normal;
+       margin-bottom:20px;
+   `
+     export const Share = styled(GiShare)`
+        width:24px;
+        height:24px;
+        cursor: pointer;
+        color:#6a6a6a;
+        padding:5px;
+        &:hover{
+            background:#e1f7e4;
+            color:#31b052;
+            border-radius:50%;
+            transition:.4s;
+        }
+    `
+     export const SharedIcon = styled('div')`
+        display:flex;
+        width:30px;
+        position: absolute;
+        flex-direction:column;
+        padding:8px 4px 4px 4px;
+        background:#e1e1e1;
+        align-items:center;
+        border-radius:4px;
+        left:${props => props.left ? props.left : '240px'};
+        margin-top:${props => props.bottom ? props.bottom : 0};
+        @media (max-width:900px){
+            left:${props => props.left ? '316px' : '240px'};
+        }
+
     `
     export const A = styled(Link)`
         text-decoration:none;
         color:#000;
+        z-index:${props => props.tes ? '999' : 0};
+
     `
     export const Flex = styled('div')`
         display:flex;

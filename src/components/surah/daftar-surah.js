@@ -27,6 +27,7 @@ function DaftarSurah(){
     const Title = styled('h4')`
         font-size:1em;
         color: #666666;
+        margin-top:-10px;
     `
     const CardSurah = styled(Card)`
         flex-direction:row;
@@ -40,7 +41,7 @@ function DaftarSurah(){
     `
     const NomorSurah = styled('div')`
         padding:5px;
-        width:10%;
+        width:5%;
         margin-right:40px;
         height:20px;
         display:flex;
@@ -84,7 +85,7 @@ function DaftarSurah(){
         <WrappMain>
         <Title>Daftar Surah</Title>
             {error && <p>Mohon Maaf Server Sedang Gangguan </p>}
-            {loading ? (<p>Memuat data... </p>)
+            {loading ? (<p>data...</p>)
             : ( data.map((sura,index) => (
                         <A  key={index} to={`/detail-surah/${sura.number}`}>
                             <CardSurah> 
