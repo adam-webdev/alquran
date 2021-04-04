@@ -3,13 +3,13 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { GiShare } from "react-icons/gi";
 
 
-
 const GlobalStyle = createGlobalStyle`
     * {
         padding:0;
         margin:0;
         scroll-behavior:smooth;
         font-size:16px;
+        box-sizing:border-box;
     }
     body{
         background:#eaeaea;
@@ -26,22 +26,40 @@ const GlobalStyle = createGlobalStyle`
         @media screen and (max-width:900px){
             margin-left:0;
         }
-       
     `
-    // home 
+    // Element parent 
     export const WrappMain = styled('div')`
-      display:flex;
-      position: relative;
-      width:450px;
-      top:80px;
-      box-sizing:border-box;
-      font-size:15px;
-      flex-direction:column;
-      @media screen and (max-width: 900px){
-            width:375px;
+        display:flex;
+        position: relative;
+        width:450px;
+        top:60px;
+        box-sizing:border-box;
+        font-size:15px;
+        flex-direction:column;
+        @media screen and (max-width: 900px){
+                width:375px;
         }
-     
-  ` 
+    ` 
+    // Header
+    export const WrappHeader = styled(WrappMain)`
+        justify-content:space-between;
+        flex-direction:row;
+        align-items:center;
+        position: fixed;
+        z-index:3;
+        top:0;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius:0 0 4px 4px;
+        height:50px;
+        box-sizing:border-box;
+        box-shadow:0 0 4px 1px rgba(0,0,0,0.2);
+        color:${props => props.color ? props.color : '#fff'};
+        background:${props => props.bg ? props.bg : '#31b049'};
+        @media (max-width:900px){
+            border-radius:0;
+        }
+    ` 
     export const Card = styled(WrappMain)`
         top:10px;
         margin-bottom:20px;
@@ -51,22 +69,21 @@ const GlobalStyle = createGlobalStyle`
         padding:1rem;
     `
     export const TextQuran = styled('h1')`
-       font-size:2rem;
-       line-height:60px;
-       text-align:end;
-       padding:10px 10px;
-       font-weight:normal;
-       margin-bottom:20px;
+        font-size:2rem;
+        line-height:60px;
+        text-align:end;
+        padding:10px 10px;
+        font-weight:normal;
+        margin-bottom:20px;
    `
-     export const Share = styled(GiShare)`
+    export const Share = styled(GiShare)`
         width:24px;
         height:24px;
         cursor: pointer;
-        color:#6a6a6a;
+        color:#31b052;
         padding:5px;
         &:hover{
             background:#e1f7e4;
-            color:#31b052;
             border-radius:50%;
             transition:.4s;
         }
@@ -87,6 +104,7 @@ const GlobalStyle = createGlobalStyle`
         }
 
     `
+   
     export const A = styled(Link)`
         text-decoration:none;
         color:#000;

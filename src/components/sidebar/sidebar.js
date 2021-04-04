@@ -1,14 +1,13 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import { MdFavoriteBorder } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FiBookmark } from "react-icons/fi";
+// import { IoSettingsOutline } from "react-icons/io5";
+// import { FiBookmark } from "react-icons/fi";
 import { BsBook } from "react-icons/bs";
 import { FaQuran } from "react-icons/fa";
 import { A } from '../../globalStyle';
 
-function Sidebar(){
-    const slide = keyframes`
+const slide = keyframes`
     0% {
         transform: translateX(0);
     }
@@ -37,8 +36,8 @@ function Sidebar(){
         display:grid;
         grid-template-rows:40px 40px 40px;
         grid-row-gap:20px;
-        background:#f9f9f9;
-        padding:30px 10px;
+        background:#f8f8f8;
+        padding:10px 10px;
         height:90vh;
     `
     const Li = styled('li')`
@@ -63,14 +62,14 @@ function Sidebar(){
         width:20px;
         height:20px;
     `
-    const Setting = styled(IoSettingsOutline)`
-        width:20px;
-        height:20px;
-    `
-    const Bookmark = styled(FiBookmark)`
-        width:20px;
-        height:20px;
-    `
+    // const Setting = styled(IoSettingsOutline)`
+    //     width:20px;
+    //     height:20px;
+    // `
+    // const Bookmark = styled(FiBookmark)`
+    //     width:20px;
+    //     height:20px;
+    // `
      const HadistIcon = styled(BsBook)`
         width:20px;
         height:20px;
@@ -79,6 +78,9 @@ function Sidebar(){
         font-size:18px;
         font-weight:normal;
     `
+
+function Sidebar(){
+    
     return(
         <WrappSidebar>
             <Ul>
@@ -95,18 +97,18 @@ function Sidebar(){
                         <TitleMenu>Hadist</TitleMenu>
                     </Li>
                 </A>
-                {/* <A to="/favorite">
+                <A to="/doa">
                     <Li>
                         <IconMenu />
-                        <TitleMenu>Favorite</TitleMenu>
+                        <TitleMenu>Doa</TitleMenu>
                     </Li>
                 </A>
-                <A to="/pengaturan">
+                {/* <A to="/pengaturan">
                     <Li>
                         <Setting />
                         <TitleMenu>Pengaturan</TitleMenu>
                     </Li>
-                </A>   */}
+                </A>   */} */}
             </Ul>
         </WrappSidebar>
     )

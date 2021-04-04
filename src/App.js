@@ -5,11 +5,12 @@ import DetailSurah from './components/detail-surah/detail-surah';
 import Favorite from './components/favorite/favorite';
 import Hadist from './components/hadith/hadist';
 import DetailHadist from './components/detail-hadist/detail-hadist';
-import Header from './components/header/header';
 import Home from './components/home/home';
 import DaftarSurah from './components/surah/daftar-surah';
 import Tersimpan from './components/tersimpan/tersimpan';
 import GlobalStyle, { Container } from './globalStyle';
+import Doa from './components/doa/doa';
+import Coba from './components/coba';
 
 
 function ScrollToTop() {
@@ -27,12 +28,14 @@ const Routing = () => {
     <Switch>
       <Route exact path='/' component={Home} />
       <Route path='/tersimpan' component={Tersimpan} />
-      <Route path='/daftar-surah' component={DaftarSurah } />
-      <Route path='/detail-surah/:id' component={DetailSurah} />
+      <Route path='/daftar-surah/' component={DaftarSurah } />
+      <Route  path='/detail-surah/:id/' component={DetailSurah} />
       <Route path='/favorite' component={Favorite} />
       <Route path='/pengaturan' component={Bookmark} />
+      <Route path='/coba' component={Coba} />
       <Route exact path='/hadist' component={Hadist} />
       <Route path='/hadist/:books' component={DetailHadist} />
+      <Route exact path='/doa' component={Doa} />
     </Switch>
   )
 }
@@ -43,7 +46,6 @@ function App() {
       <ScrollToTop />
       <GlobalStyle />
       <Container>
-        <Header />
         <Routing />
       </Container>
     </Router>

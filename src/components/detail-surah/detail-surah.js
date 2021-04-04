@@ -1,83 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Share, SharedIcon, TextQuran, WrappMain } from '../../globalStyle'
-import { useParams } from 'react-router-dom'
+import { Card, Share, SharedIcon, TextQuran, WrappHeader, WrappMain } from '../../globalStyle'
+import { useParams,useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import { MdFavoriteBorder } from "react-icons/md";
+// import { MdFavoriteBorder } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
 import NotFounds from "../img/nf.svg"
 import {FacebookIcon,WhatsappIcon,TwitterIcon,TelegramIcon, FacebookShareButton, TelegramShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
+import ArrowLeft from '../../partials/button-back';
+import Skeleton from '../../partials/skeleton';
+import { Select } from '../surah/daftar-surah';
 
-
-function DetailSurah(){
-    const [data, setData] = useState()
-    const [tafsir, setTafsir] = useState(false)
-    const [terjemah, setTerjemah] = useState(false)
-    const [share, setShare] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
-    const {id} = useParams();
-   
-    const handleTafsir = () => {
-        console.log("ok")
-        setTafsir(!tafsir);
-    }
-    const handleShare = () => {
-        console.log("ok")
-        setShare(!share);
-    }
-    const handleTerjemah = () => {
-        console.log("ok")
-        setTerjemah(!terjemah);
-    }
-    async function fetchSurah() {
-      setLoading(true);
-      try {
-        const res = await fetch(`https://api.quran.sutanlab.id/surah/${id}`);
-        const json = await res.json();
-        if (json.code === 200) {
-        console.log("res => " + json)
-            setData(json.data);
-        } else {
-        setError(true)
-        }
-      } catch (error) {
-          setError(true)
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    useEffect(() => {
-        fetchSurah();
-    },[]);
-
-    console.log("error => " + error)
-  
-    
-  
-    const IconMenu = styled(MdFavoriteBorder)`
-        width:24px;
-        height:24px;
-        cursor: pointer;
-        color:#6a6a6a;
-        padding:4px;
-        margin-bottom:8px;
-        &:hover{
-            background:#e1f7e4;
-            color:#31b052;
-            border-radius:50%;
-            transition:.4s;
-        }
-    `   
+// const IconMenu = styled(MdFavoriteBorder)`
+//         width:24px;
+//         height:24px;
+//         cursor: pointer;
+//         color:#6a6a6a;
+//         padding:4px;
+//         margin-bottom:8px;
+//         &:hover{
+//             background:#e1f7e4;
+//             color:#31b052;
+//             border-radius:50%;
+//             transition:.4s;
+//         }
+//     `   
     const Tafsir = styled(AiFillEye)`
         width:20px;
         height:20px;
         cursor: pointer;
-        color:#6a6a6a;
         padding:5px;
+        color:#31b052;
         &:hover{
             background:#e1f7e4;
-            color:#31b052;
             border-radius:50%;
             transition:.4s;
         }
@@ -100,16 +54,16 @@ function DetailSurah(){
     `
  
     const Ayat = styled('p')`
-        color:#6a6a6a;
+        color:#31b052;
         text-align:center;
-        font-size:14px;
+        font-size:12px;
     `
     const TextLatin = styled('h3')`
         font-size:1rem;
         padding:12px 10px;
-        font-weight:normal;
+        font-weight:${props => props.font ? props.font : 'normal'};
         text-indent:${props => props.indent ? '50px' : '0'};
-        color:${props => props.color ? '#31b052' : '#6a6a6a'};
+        color:${props => props.color ? props.color : '#6a6a6a'};
     `
     const Detail = styled('div')`
         display:flex;
@@ -139,17 +93,78 @@ function DetailSurah(){
         margin: 70px auto;
 
     `
+    const TextTafsir = styled('p')`
+        font-size:14px;
+        color:#888;
+    `
     const Terjemah = styled('h4')`
         display:flex;
         font-weight:normal;
         align-items:end;
         font-size:14px;
-        background:#e1f7e4;
-        color:#31b052;
+        background:#31b052;
+        color:#fff;
         padding:0 12px;
         border-radius:10px;
         cursor: pointer;
+        &:hover{
+            background:transparent;
+            color:#31b052;
+            border:1px solid #888;
+            transition:.5s;
+        }
     `
+  
+function DetailSurah(){
+    const [data, setData] = useState()
+    const [tafsir, setTafsir] = useState(false)
+    const [terjemah, setTerjemah] = useState(false)
+    const [share, setShare] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+    const {id} = useParams();
+    // const [ByAyah, setByAyah] = useState()
+    const [ayah, setAyah] = useState(1)
+   
+    const history = useHistory()
+    const handleBack = () => {
+        history.push('/daftar-surah')
+    }
+
+    const handleTafsir = () => {
+        setTafsir(!tafsir);
+    }
+    const handleShare = () => {
+        setShare(!share);
+    }
+    const handleTerjemah = () => {
+        setTerjemah(!terjemah);
+    }
+    async function fetchSurah() {
+      try {
+        const res = await fetch(`https://api.quran.sutanlab.id/surah/${id}`);
+        const json = await res.json();
+        if (json.code === 200) {
+            setData(json.data);
+        } else {
+        setError(true)
+        }
+      } catch (error) {
+          setError(true)
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    useEffect(() => {
+            fetchSurah();
+    },[id]);
+
+    const handleChangeAyah = (e) => {
+        setAyah(e.target.value)
+    }
+  
+    console.log("ayah => " + ayah)
   
     if(error){
     return (
@@ -159,10 +174,26 @@ function DetailSurah(){
         </WrappMain>
         )
     }
+   
     return(
+        <>
+        <WrappHeader bg="#f8f8f8" color="#090909">
+            <ArrowLeft onClick={handleBack} />
+            <p>{data && data.name.transliteration.id}</p>
+            <a href={'#' + ayah}>
+                <Select width="80px" value={ayah} onChange={(e) => handleChangeAyah(e)} >
+                { 
+                     data && data.verses.map((ayah,index)=>{
+                        return (
+                        <option key={index} value={ayah.number.inSurah}>ayat {ayah.number.inSurah}</option>
+                     )})
+                }
+                </Select>
+            </a>
+        </WrappHeader>
         <WrappMain>
           
-            {loading ? (<p>data...</p>): 
+            {loading ? ( <Skeleton width={"450px"} height={"200px"} amount={3} />) : 
                 ( <>
                     <Detail>
                         <h2>{data.name.short}</h2>
@@ -173,7 +204,7 @@ function DetailSurah(){
                         <TextLatin indent>{data.tafsir.id}</TextLatin>
                     </Detail>
                     {data.verses.map((ayah,index) => {
-                    return <Card key={index}>
+                    return <Card key={index} id={ayah.number.inSurah} >
                                 <CardHeader>
                                         {/* <IconMenu /> */}
                                     <span></span>
@@ -202,13 +233,13 @@ function DetailSurah(){
                                 </CardHeader>
                                 <CardBody>
                                     <TextQuran>{ayah.text.arab}</TextQuran>
-                                    <TextLatin>{ayah.text.transliteration.en}</TextLatin>
+                                    <TextLatin color="#999" font="bold"> {ayah.text.transliteration.en}</TextLatin>
                                     <TextLatin >{ terjemah ? ayah.translation.id  : ''   }</TextLatin> 
                                 </CardBody>
                                 <Div>
-                                    <A><p>Tafsir</p> <Tafsir onClick={handleTafsir} /></A>
+                                    <A><TextTafsir>Tafsir</TextTafsir> <Tafsir onClick={handleTafsir} /></A>
                                     <Terjemah onClick={handleTerjemah}>lihat terjemah </Terjemah>
-                                    <Ayat> <i>ayat {ayah.number.inSurah}</i></Ayat>
+                                    <Ayat> QS:{data.number} ayat {ayah.number.inSurah}</Ayat>
                                 </Div>
                                 <TextLatin>{tafsir ? ayah.tafsir.id.long : ''}</TextLatin>
                             </Card>
@@ -217,6 +248,7 @@ function DetailSurah(){
                 )
             }
         </WrappMain>
+        </>
     )
 }
 export default DetailSurah
