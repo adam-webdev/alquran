@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { A, Card, WrappHeader, WrappMain } from '../../globalStyle'
+import { A, Card, Flex, Grid, WrappHeader, WrappMain } from '../../globalStyle'
 import ArrowLeft from '../../partials/button-back'
 import Skeleton from '../../partials/skeleton'
+import { Text } from '../detail-hadist/detail-hadist'
 
-const Title = styled('h4')`
+export const Title = styled('h4')`
 font-size:1em;
-color: #666666;
+color: #fff;
 `
+
 const CardSurah = styled(Card)`
-flex-direction:row;
-justify-content:space-between;
 transition:.2s ease;
 cursor:pointer;
+width:100%;
+margin-bottom:20px;
+align-items:center;
 &:hover{
-    box-shadow: 0 0 4px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);
+}
+@media (max-width:768px){
+    margin-left:0;
+    margin-right:0;
 }
 
 `
 const NomorSurah = styled('div')`
 padding:5px;
-width:5%;
-margin-right:40px;
 height:20px;
 display:flex;
 background:#31b045;
-justify-content:center;
 align-items:center;
-color:#fff;
 font-size:1em;
 border-radius:4px;
 box-shadow:-2px 2px 1px 1px #fff;
 
 `
 const Surah = styled('div')`
-width:70%;
 display:flex;
 position:relative;
-align-items:flex-end;
 flex-direction:column;
 `
 
@@ -55,19 +56,28 @@ color:#555;
 font-size:14px;
 ` 
 export const Select = styled('select')`
-    font-size:12px;
-    color:#000;
+    font-size:14px;
+    color:#fff;
     padding:2px 6px;
-    border:1px solid #d1d1d1;
+    border:1px solid #fff;
     width:${props => props.width ? props.width : "100px"};
-    border-radius:4px;
+    height:${props => props.height ? props.height : "30px"};
+    border-radius:1px;
     cursor:pointer;
     background:transparent;
     outline:none;
     option{
-        font-size:12px;
+        font-size:14px;
         background:#f8f8f8;
         border:1px solid #fff;
+        color:#000;
+        @media(max-width:768px){
+        font-size:12px;
+     }
+    }
+    @media(max-width:768px){
+        font-size:12px;
+        height:20px;
     }
 `
 function DaftarSurah(){
@@ -100,8 +110,11 @@ function DaftarSurah(){
         console.log("dirender")
     return(
         <>
-        <WrappHeader bg="#f8f8f8">
-            <ArrowLeft />
+        <WrappHeader bg="#31b052">
+            <Flex>
+            <ArrowLeft >Kembali</ArrowLeft>
+            <Text color="fff">Kembali</Text>
+            </Flex>
             <Title>Daftar Surah</Title>
             <a href={"#" + surah}>
                 <Select value={surah} onChange={(e) => handlesurah(e)}>
@@ -111,16 +124,15 @@ function DaftarSurah(){
                         ))
                     }
                 </Select>
-
             </a>
         </WrappHeader>
-        <WrappMain>
+        <Grid r_gap="none">
             {error && <p>Mohon Maaf Server Sedang Gangguan </p>}
-            {loading ? (<Skeleton width={"450px"} height={"100px"} amount={5} />)
+            {loading ? (<Skeleton width={"100%"} height={"130px"} amount={16} />)
             : ( data.map((sura,index) => (
                         <A key={index} to={`/detail-surah/${sura.number}/`}>
                             <CardSurah id={sura.number}> 
-                            <NomorSurah>{sura.number}</NomorSurah>
+                                {/* <NomorSurah>{sura.number}</NomorSurah> */}
                                 <Surah>
                                     <NameSurah>{sura.name.short}</NameSurah>
                                     <EnglishName>{sura.name.transliteration.id} ({sura.numberOfVerses} ayat) </EnglishName>
@@ -130,7 +142,7 @@ function DaftarSurah(){
                         </A>
                 ))
             )}  
-        </WrappMain>
+        </Grid>
         </>
 
     )

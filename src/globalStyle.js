@@ -12,32 +12,24 @@ const GlobalStyle = createGlobalStyle`
         box-sizing:border-box;
     }
     body{
-        background:#eaeaea;
         font-family: LPMQ Isep Misbah;
         font-size:16px; 
     }
     `
-    export const Container = styled('div')`
-        font-size:16px;
-        position: relative;
-        display:flex;
-        padding-right:23em;
-        margin-left:23em;
-        @media screen and (max-width:900px){
-            margin-left:0;
-        }
-    `
+
     // Element parent 
     export const WrappMain = styled('div')`
         display:flex;
         position: relative;
-        width:450px;
+        width:100%;
+        align-items:center;
         top:60px;
-        box-sizing:border-box;
-        font-size:15px;
         flex-direction:column;
-        @media screen and (max-width: 900px){
-                width:375px;
+        padding-left:${props => props.left ? props.left : '30px'};
+        padding-right:${props => props.right ? props.right : '30px'};
+        @media(max-width:768px){
+            padding-left:10px;
+            padding-right:10px;
         }
     ` 
     // Header
@@ -48,25 +40,34 @@ const GlobalStyle = createGlobalStyle`
         position: fixed;
         z-index:3;
         top:0;
-        padding-left:10px;
-        padding-right:10px;
-        border-radius:0 0 4px 4px;
+        padding-left:30px;
+        padding-right:30px;
         height:50px;
         box-sizing:border-box;
         box-shadow:0 0 4px 1px rgba(0,0,0,0.2);
         color:${props => props.color ? props.color : '#fff'};
         background:${props => props.bg ? props.bg : '#31b049'};
-        @media (max-width:900px){
+        @media (max-width:600px){
             border-radius:0;
+            padding-left:10px;
+            padding-right:10px;
         }
     ` 
-    export const Card = styled(WrappMain)`
-        top:10px;
+    export const Card = styled('div')`
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        position:relative;
+        margin-top:${props => props.m_top ? props.m_top : 0};
         margin-bottom:20px;
-        border-radius:4px;
-        background:#f9f9f9;
+        border-radius:1px;
+        background:#f5f5f5;
         box-shadow: 1px 1px 2px 1px #d1d1d1;
-        padding:1rem;
+        padding:14px 14px;
+        @media(max-width:768px){
+            padding:10px;
+            border-radius:4px;
+        }
     `
     export const TextQuran = styled('h1')`
         font-size:2rem;
@@ -77,15 +78,20 @@ const GlobalStyle = createGlobalStyle`
         margin-bottom:20px;
    `
     export const Share = styled(GiShare)`
-        width:24px;
-        height:24px;
+        width:30px;
+        height:30px;
         cursor: pointer;
         color:#31b052;
         padding:5px;
+        margin-right:10px;
         &:hover{
             background:#e1f7e4;
             border-radius:50%;
             transition:.4s;
+        }
+        @media(max-width:768px){
+            margin-left:0;
+            margin-right:0;
         }
     `
      export const SharedIcon = styled('div')`
@@ -95,34 +101,50 @@ const GlobalStyle = createGlobalStyle`
         flex-direction:column;
         padding:8px 4px 4px 4px;
         background:#e1e1e1;
-        align-items:center;
+        align-items:start;
         border-radius:4px;
-        left:${props => props.left ? props.left : '240px'};
-        margin-top:${props => props.bottom ? props.bottom : 0};
-        @media (max-width:900px){
-            left:${props => props.left ? '316px' : '240px'};
-        }
-
+        margin-top:${props => props.top ? props.top : '0'};
     `
    
     export const A = styled(Link)`
         text-decoration:none;
         color:#000;
-        z-index:${props => props.tes ? '999' : 0};
-
+        z-index:${props => props.tes ? props.tes : 0};
+        width:90%;
+        @media(max-width:600px){
+            width:100%;
+            padding-left:20px;
+            padding-right:20px;
+        }
     `
     export const Flex = styled('div')`
         display:flex;
-        justify-content:${props => props ? props.j_content : "space-between"};
-        align-items:${props => props ? props.a_items : "center"};
-        flex-direction:${props => props ? props.flex_d : "row"};
+        align-items:${props => props.a_items ? props.a_items : "center"};
+        justify-content:${props => props.j_content ? props.j_content : "space-between"};
+        flex-direction: row;
+        flex-wrap:${props => props.flex_wrap ? props.flex_wrap : "nowrap"};
+     
+        
     `
     export const Grid = styled('div')`
         display:grid;
-        grid-template-columns:${props => props ? props.t_column : "auto auto auto auto"};
-        grid-template-rows:${props => props ? props.t_row : "auto auto auto auto"};
-        grid-column-gap:${props => props ? props.c_gap : "30px"};
-        grid-row-gap:${props => props ? props.r_gap : "30px"};
+        padding-left:40px;
+        padding-right:20px;
+        grid-template-columns:${props => props.t_column ? props.t_column : "auto auto auto auto"};
+        grid-template-rows:${props => props.t_row ? props.t_row : "auto auto auto auto"};
+        grid-column-gap:${props => props.c_gap ? props.c_gap : "30px"};
+        grid-row-gap:${props => props.r_gap ? props.r_gap : "30px"};
+        margin-top:${props => props.top ? props.top : "80px"};
+        @media (max-width:990px){
+          grid-template-columns: 50% 50%;
+          grid-gap:10px;
+        }
+        @media (max-width:600px){
+          grid-template-columns: 100%;
+          grid-row-gap:10px;
+          padding-left:30px;
+          padding-right:30px;
+        }
     `
     export const Button = styled('button')`
         width: ${props => props.width};

@@ -4,15 +4,16 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Arrow = styled(FaArrowLeft)`
-width:18px;
-height:18px;
+width:${props => props.width ? props.width : '30px'};
+height:${props => props.height ? props.height : '30px'};
 cursor: pointer;
-color:${props => props.color ? props.color : '#31b052'};
-padding:5px;
+color:${props => props.color ? props.color : '#fff'};
+background:${props => props.background ? props.background : '#31b052'};
+padding:8px;
+border-radius:50%;
 &:hover{
-    background:${props => props.background ? props.background : '#e1f7e4'};
-    color:${props => props.color ? props.color : '#31b052'};
-    border-radius:50%;
+    background:#e1f7e4;
+    color:#31b052;
     transition:.4s;
 }
 `
@@ -24,7 +25,7 @@ function ArrowLeft(props){
 
    
     return(
-        props.onClick ? <Arrow onClick={props.onClick} /> : <Arrow onClick={handleBack} />
+        props.onClick ? <Arrow color={props.color} width={props.width} height={props.height} background={props.background} onClick={props.onClick} /> : <Arrow color={props.color} width={props.width} height={props.height} background={props.background} onClick={handleBack} />
     )
 }
 

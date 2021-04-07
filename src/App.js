@@ -8,7 +8,7 @@ import DetailHadist from './components/detail-hadist/detail-hadist';
 import Home from './components/home/home';
 import DaftarSurah from './components/surah/daftar-surah';
 import Tersimpan from './components/tersimpan/tersimpan';
-import GlobalStyle, { Container } from './globalStyle';
+import GlobalStyle  from './globalStyle';
 import Doa from './components/doa/doa';
 import Coba from './components/coba';
 
@@ -45,9 +45,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <GlobalStyle />
-      <Container>
         <Routing />
-      </Container>
     </Router>
   );
 }

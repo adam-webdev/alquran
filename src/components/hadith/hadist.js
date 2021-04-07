@@ -3,18 +3,24 @@ import styled from 'styled-components'
 import { WrappHeader, WrappMain } from '../../globalStyle'
 import { BsBook } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { Title as Judul} from '../surah/daftar-surah'
 import ArrowLeft from '../../partials/button-back';
 const WrappHadist = styled(WrappMain)`
         flex-direction:row;
         flex-wrap:wrap;
+        margin-top:30px;
+        padding-right:0;
     `
     const Title = styled('h1')`
-        font-size:16px;
+        font-size:18px;
+        width:80%;
         text-indent:50px;
-        color:#6a6a6a;
-        padding-right:10px;
-        padding-left:10px;
+        color:#999;
+        margin-top:30px;
         margin-bottom:-50px;
+        @media(max-width:600px){
+            font-size:14px;
+        }
     `
     const Card = styled('div')`
         width:100%;
@@ -29,17 +35,16 @@ const WrappHadist = styled(WrappMain)`
         margin-bottom:20px;
         cursor:pointer;
         &:hover{
-            opacity:.7;
             transition:.5s;
         }
-        @media (max-width:900px){
-            width:100%;
+        @media (max-width:768px){
+            text-align:center;
         }
     ` 
     const NameHadist = styled('h2')`
         font-size:18px;
         font-weight:500;
-        color:#111;
+        color:#f8f8f8;
         @media(max-width:900px){
             font-size:15px;
         }
@@ -53,14 +58,13 @@ const WrappHadist = styled(WrappMain)`
     const Href = styled(Link)`
         display:flex;
         text-decoration:none;
-        margin-left:4px;
         color:#eaeaea;
-        margin-right:6px;
+        margin-right:20px;
         width:30%;
-        @media(max-width:900px){
-            margin-right:4px;
-            width:29%;
-            margin-left:10px;
+        @media(max-width:768px){
+            width:100%;
+            margin-right:10px;
+            margin-left:0;
         }
     `
 
@@ -68,12 +72,14 @@ function Hadist(){
   
 return (
     <>
-    <WrappHeader bg="#fff" >
+    <WrappHeader >
         <ArrowLeft />
+        <Judul>Hadist</Judul>
+        <span></span>
     </WrappHeader>
     <WrappMain>
     <Title>Hadits dalam bahasa Arab: الحديث, har. yang artinya 'berbicara, perkataan, percakapan'‎, ejaan dalam KBBI: Hadis disebut juga sunnah, adalah perkataan (sabda), perbuatan, ketetapan dan persetujuan dari Nabi Muhammad yang dijadikan landasan syariat Islam. Hadis dijadikan sumber hukum Islam selain al-Qur'an, dalam hal ini kedudukan hadis merupakan sumber hukum kedua setelah al-Qur'an.</Title>
-    <WrappHadist>
+    <WrappHadist left="30px">
         <Href key="1" to="/hadist/bukhari">
             <Card bg="#99582a">
                 <HadistIcon />

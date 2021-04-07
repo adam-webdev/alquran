@@ -18,8 +18,8 @@ const slide = keyframes`
  
     const WrappSidebar = styled('div')`
         width:250px;
-        height:90vh;
         top:0;
+        height:100vh;
         left:0;
         margin-left:-480px;
         position: fixed;
@@ -38,7 +38,6 @@ const slide = keyframes`
         grid-row-gap:20px;
         background:#f8f8f8;
         padding:10px 10px;
-        height:90vh;
     `
     const Li = styled('li')`
         display:grid;
@@ -108,7 +107,7 @@ function Sidebar(){
                         <Setting />
                         <TitleMenu>Pengaturan</TitleMenu>
                     </Li>
-                </A>   */} */}
+                </A>   */} 
             </Ul>
         </WrappSidebar>
     )

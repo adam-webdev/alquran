@@ -30,8 +30,18 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      {
+        "plugins": [
+          "react-hooks"
+        ],
+        "rules": {
+          "react-hooks/exhaustive-deps": "warn" ,
+          "react-hooks/rules-of-hooks": "error"
+        }
+      }
     ]
+    
   },
   "browserslist": {
     "production": [
@@ -48,4 +58,6 @@
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.2.0"
   }
+  
+  
 }

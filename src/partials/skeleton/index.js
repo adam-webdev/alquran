@@ -14,7 +14,6 @@ const StyleSkeleton = styled('div')`
     height: ${({height}) => height};
     position:relative;
     margin-bottom:10px;
-    margin-right:10px;
     overflow:hidden;
     background:#e1e1e1;
     border-radius:4px;

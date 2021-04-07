@@ -10,12 +10,12 @@ import Sidebar from '../sidebar/sidebar';
 import Skeleton from '../../partials/skeleton'
 
 const WrappHome = styled(WrappMain)`
-        padding-top:60px; 
-        top:0;
-        @media ( max-width:900px){
-            padding-top:50px;
-        }
-    `
+    padding:0;
+    top:0;
+    @media ( max-width:900px){
+        padding-top:50px;
+    }
+`
     const Icon = styled('div')`
     display: flex;
     position: relative;
@@ -58,16 +58,12 @@ const TextQuran = styled('h4')`
 `
 // end Header
 const WrapBanner = styled('img')`
-    width:450px;
-    height:250px;
+    width:100%;
+    height:400px;
     object-fit:cover;
-    border-radius:4px;
     background:#e5e5e5;
     margin-bottom:5px;
-    @media ( max-width: 900px){
-        width:375px;
-        border-radius:0 0 4px 4px;
-    }
+ 
 `
 
 const WrappCard = styled('div')`
@@ -249,7 +245,7 @@ const Home = () => {
                     {open ? <Close /> : <Menu />}
                     {open ? <Sidebar /> : '' }
                 </Icon>
-                <A to="/"><TextQuran> quran</TextQuran></A>
+                <TextQuran> quran</TextQuran>
                 <Search />
             </WrappHeader>
             <WrappHome>
