@@ -17,38 +17,39 @@ const slide = keyframes`
     `;
  
     const WrappSidebar = styled('div')`
-        width:250px;
+        width:300px;
         top:0;
         height:100vh;
         left:0;
+        
         margin-left:-480px;
         position: fixed;
         background:#f9f9f9;
+        padding:70px 0 0 20px;
         animation:1s ${slide} ease;
         transform:translateX(480px);
         @media (max-width:900px){
-            background:#31b052;
+            /* background:#31b052; */
             padding:50px 0 0 0;
-
         }
     `
     const Ul = styled('ul')`
         display:grid;
         grid-template-rows:40px 40px 40px;
-        grid-row-gap:20px;
+        grid-row-gap:14px;
         background:#f8f8f8;
-        padding:10px 10px;
+        padding:10px 4px;
     `
     const Li = styled('li')`
         display:grid;
-        padding:2px 10px;
-        border-radius:4px;
+        padding:0 0 14px 10px;
         color:#31b052;
+        border-bottom:2px solid #eaeaea;
         align-items:center;
         grid-template-columns:30px 100px;
         grid-column-gap:10px;
         &:hover{
-            color:green;
+            color:#999;
         }
         
     `
@@ -76,6 +77,7 @@ const slide = keyframes`
     const TitleMenu = styled('h1')`
         font-size:18px;
         font-weight:normal;
+        color:#898989;
     `
 
 function Sidebar(){

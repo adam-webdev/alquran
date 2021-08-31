@@ -19,7 +19,9 @@ const WrappHadist = styled(WrappMain)`
         margin-top:30px;
         margin-bottom:-50px;
         @media(max-width:600px){
-            font-size:14px;
+            font-size:16px;
+            width:100%;
+
         }
     `
     const Card = styled('div')`

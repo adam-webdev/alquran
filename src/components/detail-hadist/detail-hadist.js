@@ -17,7 +17,8 @@ const Header = styled('div')`
     `
     const Footer = styled(Header)`
         position:fixed;
-        margin-top:562px;
+        /* margin-top:550px; */
+        bottom:0;
         justify-content:space-between;
         width:100%;
         height:50px;
@@ -57,8 +58,8 @@ const Header = styled('div')`
     // `
     const Title = styled('p')`
         font-size:16px;
-        color:${props => props ? props.color : '#d1d1d1'};
-        font-weight:normal;
+        color:${props => props.color ? props.color : '#000'};
+        font-weight:${props => props .weight? props.weight : 'bold'};
     `
    
     const ArrowRight = styled(FaArrowRight)`
@@ -82,7 +83,17 @@ const Header = styled('div')`
         margin-left:8px;
         font-size:16px;
         @media(max-width:768px){
-            font-size:12px;
+            font-size:16px;
+            font-weight:500;
+            margin-left:0;
+
+        }
+    `
+    export const TextArrow = styled('p')`
+        font-size:14px;
+        margin-left:8px;
+        @media(max-width:768px){
+            display:none;
         }
     `
     const WrappInput = styled('div')`
@@ -159,9 +170,8 @@ function DetailHadist(){
     
 
     async function getNomorHadist() {
-        console.log("GetNomorHadist DIRENDER!")
         try{
-        const result = await fetch(`https://api.hadith.sutanlab.id/books/${books}/${nomorHadist}`)
+        const result = await fetch(`https://api.hadith.sutanlab.id/booksZ/${books}/${nomorHadist}`)
         const json = await result.json()
         console.log("JSON :" + json)
             if(json.code !== 200){
@@ -205,13 +215,10 @@ function DetailHadist(){
         }
     }
 
-    console.log("START NUMBER " + start)
-    console.log("END NUMBER " + end)
     async function getHadist() {
         try{
         const result = await fetch(`https://api.hadith.sutanlab.id/books/${books}?range=${start}-${end}`)
         const json = await result.json()
-        console.log("JSON nomor:" + json)
             if(json.code !== 200){
                 setError(true)
             } else {
@@ -240,9 +247,9 @@ function DetailHadist(){
             <WrappHeader>
                     <Flex>
                         <ArrowLeft onClick={handleBack} />
-                        <Text color="#fff">Kembali</Text>
+                        <TextArrow color="#fff">Kembali</TextArrow>
                     </Flex>
-                    <Title>{hadist && hadist.name}</Title>
+                    <Title color="#fff">{hadist && hadist.name}</Title>
                     <Flex>
                     
                     <a href={"#" + number}>
@@ -292,7 +299,7 @@ function DetailHadist(){
                         </SharedIcon>
                     ): ''}
                     <TextQuran>{dataNomorHadist.contents.arab}</TextQuran>
-                    <p>{dataNomorHadist.contents.id}</p>
+                    <Text>{dataNomorHadist.contents.id}</Text>
                     <NameHadist><i> {dataNomorHadist.name} Nomor {dataNomorHadist.contents.number}</i></NameHadist>
                 </Card>
                 ):( 
@@ -339,13 +346,26 @@ function DetailHadist(){
                 nomorHadist  ? ('') : 
                     (<Footer>
                         <Flex>
-                            <ArrowLeft onClick={handleClickLeft}  />
-                            <Text>Sebelumnya</Text>
+                            {
+                                start === 1 ? (''):(
+                                <>
+                                    <ArrowLeft onClick={handleClickLeft}  />
+                                    <TextArrow>Sebelumnya</TextArrow>
+                                </>
+                                )
+                            }
                         </Flex>
-                        <Title>{end} - {hadist && hadist.available} hadist</Title>
+                        <Title weight="normal">{end} - {hadist && hadist.available} hadist</Title>
                         <Flex>
-                            <Text>Selanjutnya</Text>
-                            <ArrowRight  onClick={handleClickRight}/>
+                            {   hadist&&
+                                end === hadist.available ? (<div></div>):(
+                                <>
+                                    <TextArrow>Selanjutnya</TextArrow>
+                                    <ArrowRight  onClick={handleClickRight}/>
+                                </>
+                                )
+                            }
+                           
                         </Flex>
                     </Footer>)
                 }   

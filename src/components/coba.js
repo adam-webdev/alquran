@@ -17,7 +17,6 @@ function Coba(){
         background:#d1d1d1;
         border-radius:4px;
         margin-bottom:20px;
-        
     `
     console.log("component Dirender!")
     return(

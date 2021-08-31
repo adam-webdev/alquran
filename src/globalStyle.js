@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import { GiShare } from "react-icons/gi";
+import Background from '../src/components/img/bg.jpg'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -10,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
         scroll-behavior:smooth;
         font-size:16px;
         box-sizing:border-box;
+
     }
     body{
         font-family: LPMQ Isep Misbah;
@@ -28,8 +30,9 @@ const GlobalStyle = createGlobalStyle`
         padding-left:${props => props.left ? props.left : '30px'};
         padding-right:${props => props.right ? props.right : '30px'};
         @media(max-width:768px){
-            padding-left:10px;
-            padding-right:10px;
+            padding-left:0;
+            padding-right:0;
+            top:0;
         }
     ` 
     // Header
@@ -40,8 +43,6 @@ const GlobalStyle = createGlobalStyle`
         position: fixed;
         z-index:3;
         top:0;
-        padding-left:30px;
-        padding-right:30px;
         height:50px;
         box-sizing:border-box;
         box-shadow:0 0 4px 1px rgba(0,0,0,0.2);
@@ -75,7 +76,12 @@ const GlobalStyle = createGlobalStyle`
         text-align:end;
         padding:10px 10px;
         font-weight:normal;
-        margin-bottom:20px;
+        margin-bottom:${props => props ? '0' : '20px' };
+        @media(max-width:768px){
+        font-size:1.8rem;
+
+        }
+
    `
     export const Share = styled(GiShare)`
         width:30px;

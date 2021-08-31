@@ -10,7 +10,7 @@ import {FacebookIcon,WhatsappIcon,TwitterIcon,TelegramIcon, FacebookShareButton,
 import ArrowLeft from '../../partials/button-back';
 import Skeleton from '../../partials/skeleton';
 import { Select } from '../surah/daftar-surah';
-import { Text } from '../detail-hadist/detail-hadist';
+import { Text, TextArrow } from '../detail-hadist/detail-hadist';
 
 // const IconMenu = styled(MdFavoriteBorder)`
 //         width:24px;
@@ -38,8 +38,8 @@ import { Text } from '../detail-hadist/detail-hadist';
             transition:.4s;
         }
         @media(max-width:768px){
-            width:24px;
-            height:24px;
+            width:28px;
+            height:28px;
         }
     `
     
@@ -114,14 +114,14 @@ import { Text } from '../detail-hadist/detail-hadist';
         font-size:14px;
         background:#31b052;
         color:#fff;
-        height:24px;
+        border-radius:4px;
+        height:22px;
         padding:0 12px;
-        border-radius:1px;
         cursor: pointer;
         &:hover{
             background:transparent;
             color:#31b052;
-            border:1px solid #888;
+            border:1px solid #d1d1d1;
             transition:.5s;
         }
         @media(max-width:768px){
@@ -195,7 +195,7 @@ function DetailSurah(){
         <WrappHeader bg="#31b052" color="#fff">
             <Flex>
                 <ArrowLeft onClick={handleBack} />
-                <Text color="fff">Kembali</Text>
+                <TextArrow color="fff">Kembali</TextArrow>
             </Flex>
             <Title>{data && data.name.transliteration.id}</Title>
             <a href={'#' + ayah}>
@@ -214,7 +214,7 @@ function DetailSurah(){
             {loading ? ( <Skeleton width={"100%"} height={"300px"} amount={2} />) : 
                 ( <>
                     <Detail>
-                        <h1>{data.name.short}</h1>
+                        <TextQuran>{data.name.short}</TextQuran>
                         <h4>{data.name.transliteration.id}</h4>
                         <h5> ( {data.name.translation.id} )</h5>
                         <p>{data.revelation.id}</p>
@@ -250,7 +250,7 @@ function DetailSurah(){
                                 </CardHeader>
                                 <CardBody>
                                     <TextQuran>{ayah.text.arab}</TextQuran>
-                                    <TextLatin color="#002" font="bold"> {ayah.text.transliteration.en}</TextLatin>
+                                    <TextLatin color="#999" font="bold"> {ayah.text.transliteration.en}</TextLatin>
                                     <TextLatin >{ terjemah ? ayah.translation.id  : ''   }</TextLatin> 
                                 </CardBody>
                                 <Div>

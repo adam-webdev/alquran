@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { A, Card, Flex, Grid, WrappHeader, WrappMain } from '../../globalStyle'
 import ArrowLeft from '../../partials/button-back'
 import Skeleton from '../../partials/skeleton'
-import { Text } from '../detail-hadist/detail-hadist'
+import { Text, TextArrow } from '../detail-hadist/detail-hadist'
 
 export const Title = styled('h4')`
 font-size:1em;
@@ -107,13 +107,12 @@ function DaftarSurah(){
         setSurah(e.target.value)
     }
   
-        console.log("dirender")
     return(
         <>
         <WrappHeader bg="#31b052">
             <Flex>
-            <ArrowLeft >Kembali</ArrowLeft>
-            <Text color="fff">Kembali</Text>
+            <ArrowLeft ></ArrowLeft>
+            <TextArrow color="fff">Kembali</TextArrow>
             </Flex>
             <Title>Daftar Surah</Title>
             <a href={"#" + surah}>

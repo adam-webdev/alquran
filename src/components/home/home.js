@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import notfound from '../img/masjidilharam.jpeg'
+import baner from '../img/ms.png'
 import Clock from '../../partials/jam'
 import { A,WrappHeader,WrappMain } from '../../globalStyle'
 import { FiSearch } from "react-icons/fi";
@@ -34,12 +34,20 @@ const Menu = styled(HiMenu)`
 const Close = styled(CgClose)`
     width:18px;
     height:18px;
+    position:absolute;
+    left:220px;
+    font-weight:600;
     z-index:999999;
-    color:#fff;
+    color:#31b052;
     cursor: pointer;
     &:hover{
     transition:.2s ease-in;
     }
+    @media(max-width:600px){
+        left:250px;
+    }
+   
+    
 `
 const Search = styled(FiSearch)`
     width:18px;
@@ -59,10 +67,11 @@ const TextQuran = styled('h4')`
 // end Header
 const WrapBanner = styled('img')`
     width:100%;
+    padding-top: 10px;
     height:400px;
-    object-fit:cover;
+    object-fit:contain;
     background:#e5e5e5;
-    margin-bottom:5px;
+    /* margin-bottom:5px; */
  
 `
 
@@ -70,13 +79,12 @@ const WrappCard = styled('div')`
     display:flex;
     width:100%;
     align-items:center;
-    background:#f8f8f8;
+    background:#e5e5e5;
     border-radius:4px;
-    padding:20px ;
+    padding:20px 20px 30px 20px ;
     flex-direction:column;
-    box-shadow:0 0 4px 1px rgba(0,0,0,0.1);
-    margin-bottom:20px;
-    margin-top:10px;
+    /* box-shadow:0 0 4px 1px rgba(0,0,0,0.1); */
+    margin-top:4px;
     box-sizing:border-box;
     @media ( max-width:900px){
         padding-left:10px;
@@ -91,8 +99,12 @@ const CardWaktu = styled('div')`
     margin-right:14px;
 `
 const NamaWatku = styled('p')`
-    font-size:12px;
+    font-size:16px;
     color:#999;
+    @media(max-width:768px){
+    font-size:14px;
+        
+    }
 `
 const Jam = styled('h3')`
     color:#31b052;
@@ -103,18 +115,23 @@ const WrappKota = styled('div')`
     justify-content:space-between;
     position: relative;
     margin-bottom:20px;
-    width:100%;
+    width:60%;
+    @media(max-width:768px){
+        width:100%;
+    }
 `
 const Select = styled('select')`
-    font-size:10px;
-    width:40%;
+    font-size:12px;
+    width:30%;
     outline:none;
     background:transparent;
     border-radius:4px;
     padding:6px 2px;
     cursor: pointer;
     border:1px solid #d1d1d1;
-    
+    @media(max-width:768px){
+        width:40%;
+    }
     option{
         color: black;
         background: white;
@@ -124,53 +141,40 @@ const Select = styled('select')`
         padding: 0px 2px 1px;
     }
 `
-// const Select = styled.select`
-//   width: 20%;
-//   height: 35px;
-//   background: white;
-//   color: gray;
-//   padding-left: 5px;
-//   font-size: 14px;
-//   border: none;
-//   margin-left: 10px;
 
-//   option {
-//     color: black;
-//     background: white;
-//     display: flex;
-//     white-space: pre;
-//     min-height: 20px;
-//     padding: 0px 2px 1px;
-//   }
-// `;
 const Option = styled('option')`
     width:100px;
     position: relative;
-    font-size:10px;
+    font-size:14px;
+    @media(max-width:768px){
+        font-size:10px;
+    }
 `
 const JadwalSholat = styled('h3')`
-    font-size:14px;
+    font-size:16px;
     font-weight:500;
     margin-bottom:10px;
     text-transform:uppercase;
     color:#555;
     text-align:center;
+    @media(max-width:768px){
+        font-size:12px;
+    }
 `
 const Footer = styled('h6')`
     font-size:.8rem;
     color:#555;
     text-align:center;
     font-weight:normal;
-    margin-top:60px;
+    margin-top:10px;
     @media (max-widht:900px){
         margin-bottom:-100px;
     }
 `
 
 const Home = () => {
-    console.log("function Home Dieksekusi")
     const [kota, setKota] = useState()
-    const [idKota, setIdKota] = useState()
+    const [idKota, setIdKota] = useState(1301)
     const [byKota, setByKota] = useState()
     const [error , setError] = useState(false)
     const [loading , setLoading] = useState(true)
@@ -189,55 +193,42 @@ const Home = () => {
         //     console.log("Masih ada data")
         // }
         getKota()
-        console.log("Ops data kosong harus drender!")
     },[])
 
    
-    const getByIdKota = async() => {
-        const dates = new Date()
-        const years = dates.getFullYear()
-        const month = dates.getMonth() + 1
-        const date = dates.getDate()
-        try{
-            const kota2 = await fetch(`https://api.myquran.com/v1/sholat/jadwal/${idKota?idKota:1301}/${years}/${month}/${date}`)
-            const result2 = await kota2.json()
-            if( result2.status === false){
-                setError(true)
-            } else {
-            setByKota(result2.data)
-            }
-        } catch (error){
-            setError(true);
-        } finally{
-            setLoading(false)
-        }
-    }
+ 
     useEffect(() => {
-        // console.log("getBYIDkota dirender~~!")
-        // if(idKota === ''){
-        //     console.log("Kosong tidak render ulang")
-        // }
+        const getByIdKota = async() => {
+            const dates = new Date()
+            const years = dates.getFullYear()
+            const month = dates.getMonth() + 1
+            const date = dates.getDate()
+            try{
+                const kota2 = await fetch(`https://api.myquran.com/v1/sholat/jadwal/${idKota}/${years}/${month}/${date}`)
+                const result2 = await kota2.json()
+                if( result2.status === false){
+                    setError(true)
+                } else {
+                setByKota(result2.data)
+                }
+            } catch (error){
+                setError(true);
+            } finally{
+                setLoading(false)
+            }
+        }
         getByIdKota() 
-        console.log("ada render ulang")
      
     },[idKota])
 
     const handleChange = (e) => {
-        console.log( "HandleChange Dirender~~")
         setIdKota(e.target.value)
     } 
-    // const values = () => {
-    //     if(idKota === null ){
-    //         return "pilih kota"
-    //     }else{
-    //     return idKota
-    //     }
-    // }
+    
     if(error){
         return <p>Error ......</p>
     }
 
-    console.log("Component Dirender!")
     return(
         <>
             <WrappHeader>
@@ -249,7 +240,7 @@ const Home = () => {
                 <Search />
             </WrappHeader>
             <WrappHome>
-                <WrapBanner src={notfound} />
+                <WrapBanner src={baner} />
                 <WrappCard>
                     <JadwalSholat>Jadwal sholat {byKota && byKota.lokasi} </JadwalSholat>
                     <WrappKota>
@@ -267,12 +258,13 @@ const Home = () => {
                         // )
                     }
                     </WrappKota>
+
                     <WrappKota>
-                        <Select value={idKota?idKota:1301} onChange={(e) => handleChange(e)} > 
-                            {kota && kota.map((kota, index) => {
-                                return <Option key={index} value={kota.id}>{kota.lokasi}</Option>
-                            })
-                        }
+                        <Select value={idKota} onChange={(e) => handleChange(e)} > 
+                                {kota && kota.map((kota, index) => {
+                                    return <Option key={index} value={kota.id}>{kota.lokasi}</Option>
+                                })
+                            }
                         </Select>
                         <Clock />
                     </WrappKota>
