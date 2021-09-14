@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import baner from '../img/ms.png'
 import Clock from '../../partials/jam'
-import { A,WrappHeader,WrappMain } from '../../globalStyle'
+import { WrappHeader,WrappMain } from '../../globalStyle'
 import { FiSearch } from "react-icons/fi";
 import { HiMenu } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import Sidebar from '../sidebar/sidebar';
-import Skeleton from '../../partials/skeleton'
 
 const WrappHome = styled(WrappMain)`
     padding:0;
     top:0;
     @media ( max-width:900px){
-        padding-top:50px;
+        /* padding-top:50px; */
     }
 `
     const Icon = styled('div')`
@@ -22,8 +21,8 @@ const WrappHome = styled(WrappMain)`
     cursor: pointer;
 `
 const Menu = styled(HiMenu)`
-    width:18px;
-    height:18px;
+    width:30px;
+    height:30px;
     font-weight:800;
     cursor: pointer;
     &:hover{
@@ -32,8 +31,8 @@ const Menu = styled(HiMenu)`
     }
 `
 const Close = styled(CgClose)`
-    width:18px;
-    height:18px;
+    width:30px;
+    height:30px;
     position:absolute;
     left:220px;
     font-weight:600;
@@ -67,11 +66,17 @@ const TextQuran = styled('h4')`
 // end Header
 const WrapBanner = styled('img')`
     width:100%;
-    padding-top: 10px;
     height:400px;
     object-fit:contain;
+    background-position:center;
     background:#e5e5e5;
     /* margin-bottom:5px; */
+    @media(max-width:768px){
+        padding-top: 100px;
+        object-fit:cover;
+        margin-top: -10px;
+
+    }
  
 `
 
@@ -79,7 +84,6 @@ const WrappCard = styled('div')`
     display:flex;
     width:100%;
     align-items:center;
-    background:#e5e5e5;
     border-radius:4px;
     padding:20px 20px 30px 20px ;
     flex-direction:column;
@@ -96,7 +100,7 @@ const CardWaktu = styled('div')`
     display:flex;
     flex-direction:column;
     font-size:16px;
-    margin-right:14px;
+    /* margin-right:14px; */
 `
 const NamaWatku = styled('p')`
     font-size:16px;
@@ -109,6 +113,8 @@ const NamaWatku = styled('p')`
 const Jam = styled('h3')`
     color:#31b052;
     font-size:16px;
+    padding: 10px 0;
+
 `
 const WrappKota = styled('div')`
     display:flex;
@@ -193,6 +199,9 @@ const Home = () => {
         //     console.log("Masih ada data")
         // }
         getKota()
+        return() => {
+            getKota()
+        }
     },[])
 
    
@@ -218,6 +227,8 @@ const Home = () => {
             }
         }
         getByIdKota() 
+
+       
      
     },[idKota])
 
@@ -228,7 +239,7 @@ const Home = () => {
     if(error){
         return <p>Error ......</p>
     }
-
+    
     return(
         <>
             <WrappHeader>
@@ -237,14 +248,15 @@ const Home = () => {
                     {open ? <Sidebar /> : '' }
                 </Icon>
                 <TextQuran> quran</TextQuran>
-                <Search />
+                {/* <Search /> */}
+                <div></div>
             </WrappHeader>
             <WrappHome>
                 <WrapBanner src={baner} />
                 <WrappCard>
                     <JadwalSholat>Jadwal sholat {byKota && byKota.lokasi} </JadwalSholat>
                     <WrappKota>
-                    {
+                    {   loading ? <p>mohon tunggu...</p> : (
                         byKota &&
                           <> 
                          <CardWaktu><NamaWatku>Imsak</NamaWatku><Jam>{byKota.jadwal.imsak}</Jam></CardWaktu>
@@ -255,7 +267,7 @@ const Home = () => {
                          <CardWaktu><NamaWatku>Maghrib</NamaWatku><Jam>{byKota.jadwal.maghrib}</Jam></CardWaktu>
                          <CardWaktu><NamaWatku>Isya</NamaWatku><Jam>{byKota.jadwal.isya}</Jam></CardWaktu>
                            </> 
-                        // )
+                        )
                     }
                     </WrappKota>
 

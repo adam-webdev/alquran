@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const WrappJam = styled('div')`
     width:120px;
     letter-spacing:2px;
+    padding: 10px 0;
     border-radius:4px;
     text-align:center;
     font-size:14px;

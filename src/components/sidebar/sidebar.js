@@ -25,12 +25,12 @@ const slide = keyframes`
         margin-left:-480px;
         position: fixed;
         background:#f9f9f9;
-        padding:70px 0 0 20px;
+        padding:70px 0 0 10px;
         animation:1s ${slide} ease;
         transform:translateX(480px);
         @media (max-width:900px){
             /* background:#31b052; */
-            padding:50px 0 0 0;
+            padding:50px 0 0 ;
         }
     `
     const Ul = styled('ul')`
@@ -42,7 +42,7 @@ const slide = keyframes`
     `
     const Li = styled('li')`
         display:grid;
-        padding:0 0 14px 10px;
+        padding:0 0 14px 0;
         color:#31b052;
         border-bottom:2px solid #eaeaea;
         align-items:center;
@@ -62,14 +62,7 @@ const slide = keyframes`
         width:20px;
         height:20px;
     `
-    // const Setting = styled(IoSettingsOutline)`
-    //     width:20px;
-    //     height:20px;
-    // `
-    // const Bookmark = styled(FiBookmark)`
-    //     width:20px;
-    //     height:20px;
-    // `
+ 
      const HadistIcon = styled(BsBook)`
         width:20px;
         height:20px;
@@ -79,7 +72,7 @@ const slide = keyframes`
         font-weight:normal;
         color:#898989;
     `
-
+ 
 function Sidebar(){
     
     return(

@@ -31,7 +31,6 @@ const Header = styled('div')`
             padding-left:10px;
             padding-right:10px;
         }
-       
     `
     const NameHadist = styled('p')`
         text-align: center;
@@ -59,7 +58,7 @@ const Header = styled('div')`
     const Title = styled('p')`
         font-size:16px;
         color:${props => props.color ? props.color : '#000'};
-        font-weight:${props => props .weight? props.weight : 'bold'};
+        font-weight:${props => props.weight? props.weight : 'bold'};
     `
    
     const ArrowRight = styled(FaArrowRight)`
@@ -214,6 +213,7 @@ function DetailHadist(){
             setEnd(end-50)
         }
     }
+    useEffect(() => {
 
     async function getHadist() {
         try{
@@ -231,9 +231,9 @@ function DetailHadist(){
         }
     }
 
-    useEffect(() => {
         getHadist()
-    },[start,end])
+       
+    },[start,end,books])
 
    
    

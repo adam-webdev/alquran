@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { A, Card, Flex, Grid, WrappHeader, WrappMain } from '../../globalStyle'
+import { A, Card, Flex, Grid, WrappHeader } from '../../globalStyle'
 import ArrowLeft from '../../partials/button-back'
 import Skeleton from '../../partials/skeleton'
-import { Text, TextArrow } from '../detail-hadist/detail-hadist'
+import {  TextArrow } from '../detail-hadist/detail-hadist'
 
 export const Title = styled('h4')`
 font-size:1em;
@@ -11,31 +11,21 @@ color: #fff;
 `
 
 const CardSurah = styled(Card)`
-transition:.2s ease;
-cursor:pointer;
-width:100%;
-margin-bottom:20px;
-align-items:center;
-&:hover{
-    box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);
-}
-@media (max-width:768px){
-    margin-left:0;
-    margin-right:0;
-}
+    transition:.2s ease;
+    cursor:pointer;
+    width:100%;
+    margin-bottom:20px;
+    align-items:center;
+    &:hover{
+        box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);
+    }
+    @media (max-width:768px){
+        margin-left:0;
+        margin-right:0;
+    }
 
 `
-const NomorSurah = styled('div')`
-padding:5px;
-height:20px;
-display:flex;
-background:#31b045;
-align-items:center;
-font-size:1em;
-border-radius:4px;
-box-shadow:-2px 2px 1px 1px #fff;
 
-`
 const Surah = styled('div')`
 display:flex;
 position:relative;
@@ -53,7 +43,9 @@ font-size:16px;
 `  
 const EnglishTranslation = styled(NameSurah)`
 color:#555;
-font-size:14px;
+font-size:12px;
+opacity: .5;
+margin-top:6px;
 ` 
 export const Select = styled('select')`
     font-size:14px;
@@ -135,7 +127,7 @@ function DaftarSurah(){
                                 <Surah>
                                     <NameSurah>{sura.name.short}</NameSurah>
                                     <EnglishName>{sura.name.transliteration.id} ({sura.numberOfVerses} ayat) </EnglishName>
-                                    <EnglishTranslation>{sura.name.translation.id}</EnglishTranslation>
+                                    <EnglishTranslation>( {sura.name.translation.id} )</EnglishTranslation>
                                 </Surah>
                             </CardSurah>
                         </A>

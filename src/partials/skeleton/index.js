@@ -28,8 +28,9 @@ const StyleSkeleton = styled('div')`
       animation: ${SkeletonAnimate} 1s ease-in-out infinite;
     }
     @media(max-width:900px){
-      width:375px;
+      width:300px;
     }
+    
     `
   
 const Skeleton = ({width,height,amount}) => {
@@ -37,7 +38,7 @@ const Skeleton = ({width,height,amount}) => {
       [...Array(amount)].map((skeleton,index) => {
        return <StyleSkeleton key={index} width={width} height={height} amount={index} />
       }) 
-    ): (
+    ):(
         <StyleSkeleton width={width} height={height} />
     )
 }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import { GiShare } from "react-icons/gi";
-import Background from '../src/components/img/bg.jpg'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -15,6 +14,8 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: LPMQ Isep Misbah;
+        /* src: url('') format(.woff); */
+        @font-face{font-family:LPMQ;src:url(https://cdn.statically.io/gh/jp-rafiqi/jp-project/9218c079/LPMQ.eot);src:url(https://litequran.net/assets/fonts/LPMQ.eot?#iefix) format('embedded-opentype'), url(https://cdn.statically.io/gh/jp-rafiqi/jp-project/9218c079/LPMQ.woff) format('woff'), url(https://cdn.statically.io/gh/jp-rafiqi/jp-project/9218c079/LPMQ.ttf) format('truetype')}
         font-size:16px; 
     }
     `
@@ -30,9 +31,9 @@ const GlobalStyle = createGlobalStyle`
         padding-left:${props => props.left ? props.left : '30px'};
         padding-right:${props => props.right ? props.right : '30px'};
         @media(max-width:768px){
-            padding-left:0;
-            padding-right:0;
-            top:0;
+            padding-left:10px;
+            padding-right:10px;
+            /* top:0; */
         }
     ` 
     // Header
@@ -60,7 +61,7 @@ const GlobalStyle = createGlobalStyle`
         width:100%;
         position:relative;
         margin-top:${props => props.m_top ? props.m_top : 0};
-        margin-bottom:20px;
+        margin-bottom:30px;
         border-radius:1px;
         background:#f5f5f5;
         box-shadow: 1px 1px 2px 1px #d1d1d1;

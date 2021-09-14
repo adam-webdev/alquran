@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Card, Flex, Share, SharedIcon, TextQuran, WrappHeader, WrappMain } from '../../globalStyle'
 import { useParams,useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-// import { MdFavoriteBorder } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
 import NotFounds from "../img/nf.svg"
 import {Title} from '../surah/daftar-surah'
@@ -10,22 +9,9 @@ import {FacebookIcon,WhatsappIcon,TwitterIcon,TelegramIcon, FacebookShareButton,
 import ArrowLeft from '../../partials/button-back';
 import Skeleton from '../../partials/skeleton';
 import { Select } from '../surah/daftar-surah';
-import { Text, TextArrow } from '../detail-hadist/detail-hadist';
+import {  TextArrow } from '../detail-hadist/detail-hadist';
 
-// const IconMenu = styled(MdFavoriteBorder)`
-//         width:24px;
-//         height:24px;
-//         cursor: pointer;
-//         color:#6a6a6a;
-//         padding:4px;
-//         margin-bottom:8px;
-//         &:hover{
-//             background:#e1f7e4;
-//             color:#31b052;
-//             border-radius:50%;
-//             transition:.4s;
-//         }
-//     `   
+
     const Tafsir = styled(AiFillEye)`
         width:30px;
         height:30px;
@@ -78,7 +64,8 @@ import { Text, TextArrow } from '../detail-hadist/detail-hadist';
         display:flex;
         flex-direction:column;
         justify-content:center;
-        margin-top:20px;
+        margin-top:60px;
+        margin-bottom:20px;
         align-items:center;
     `
     const Audio = styled('audio')`
@@ -88,9 +75,7 @@ import { Text, TextArrow } from '../detail-hadist/detail-hadist';
         margin-right:10px;
       
     `
-    const WrappIcon = styled('div')`
-        position:relative;
-    `
+   
     const A = styled('a')`
         font-size:14px;
         text-decoration:none;
@@ -110,7 +95,7 @@ import { Text, TextArrow } from '../detail-hadist/detail-hadist';
     const Terjemah = styled('h4')`
         display:flex;
         font-weight:normal;
-        align-items:end;
+        align-items:center;
         font-size:14px;
         background:#31b052;
         color:#fff;
@@ -155,24 +140,25 @@ function DetailSurah(){
     const handleTerjemah = () => {
         setTerjemah(!terjemah);
     }
-    async function fetchSurah() {
-      try {
-        const res = await fetch(`https://api.quran.sutanlab.id/surah/${id}`);
-        const json = await res.json();
-        if (json.code === 200) {
-            setData(json.data);
-        } else {
-        setError(true)
-        }
-      } catch (error) {
-          setError(true)
-      } finally {
-        setLoading(false);
-      }
-    }
-
     useEffect(() => {
-            fetchSurah();
+
+        async function fetchSurah() {
+            try {
+            const res = await fetch(`https://api.quran.sutanlab.id/surah/${id}`);
+            const json = await res.json();
+            if (json.code === 200) {
+                setData(json.data);
+            } else {
+            setError(true)
+            }
+            } catch (error) {
+                setError(true)
+            } finally {
+            setLoading(false);
+            }
+        }
+
+        fetchSurah();
     },[id]);
 
     const handleChangeAyah = (e) => {

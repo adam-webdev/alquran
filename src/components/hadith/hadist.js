@@ -15,7 +15,7 @@ const WrappHadist = styled(WrappMain)`
         font-size:18px;
         width:80%;
         text-indent:50px;
-        color:#999;
+        color:#010101;
         margin-top:30px;
         margin-bottom:-50px;
         @media(max-width:600px){
@@ -27,17 +27,21 @@ const WrappHadist = styled(WrappMain)`
     const Card = styled('div')`
         width:100%;
         padding:12px 4px 12px 10px;
-        background:${props => props.bg ? props.bg : '#fff' };
+        background:#e1f7e4;
+        border:1px solid #31b052;
         border-radius:4px;
         justify-content:center;
         position:relative;
         font-size:16px;
         box-sizing:none;
+        box-shadow:0 4px 4px 2px rgba(0,0,0,0.2);
         align-items:center;
         margin-bottom:20px;
         cursor:pointer;
         &:hover{
             transition:.5s;
+            box-shadow:0 2px 2px 1px rgba(0,0,0,0.3);
+
         }
         @media (max-width:768px){
             text-align:center;
@@ -46,7 +50,7 @@ const WrappHadist = styled(WrappMain)`
     const NameHadist = styled('h2')`
         font-size:18px;
         font-weight:500;
-        color:#f8f8f8;
+        color:#000;
         @media(max-width:900px){
             font-size:15px;
         }
@@ -55,7 +59,7 @@ const WrappHadist = styled(WrappMain)`
         width:20px;
         height:20px;
         align-items:center;
-        color:#d1d1d1;
+        color:#000;
     `
     const Href = styled(Link)`
         display:flex;
@@ -83,57 +87,57 @@ return (
     <Title>Hadits dalam bahasa Arab: الحديث, har. yang artinya 'berbicara, perkataan, percakapan'‎, ejaan dalam KBBI: Hadis disebut juga sunnah, adalah perkataan (sabda), perbuatan, ketetapan dan persetujuan dari Nabi Muhammad yang dijadikan landasan syariat Islam. Hadis dijadikan sumber hukum Islam selain al-Qur'an, dalam hal ini kedudukan hadis merupakan sumber hukum kedua setelah al-Qur'an.</Title>
     <WrappHadist left="30px">
         <Href key="1" to="/hadist/bukhari">
-            <Card bg="#99582a">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Bukhari</NameHadist>
+                <NameHadist>Hadist Riwayat Bukhari</NameHadist>
             </Card>
         </Href>
         <Href  key="2" to="/hadist/muslim">
-            <Card bg="#dda15e">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Muslim</NameHadist>
+                <NameHadist>Hadist Riwayat Muslim</NameHadist>
             </Card>
         </Href>
         <Href key="3" to="/hadist/nasai">
-            <Card bg="#774936">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Nasai</NameHadist>
+                <NameHadist>Hadist Riwayat Nasai</NameHadist>
             </Card>
         </Href>
         <Href key="4" to="/hadist/tirmidzi">
-            <Card bg="#9d6b53">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Tirmidzi</NameHadist>
+                <NameHadist>Hadist Riwayat Tirmidzi</NameHadist>
             </Card>
         </Href>
        <Href key="5" to="/hadist/ibnu-majah">
-            <Card bg="#8a5a44">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Ibnu Majah</NameHadist>
+                <NameHadist>Hadist Riwayat Ibnu Majah</NameHadist>
             </Card>
        </Href>
         <Href key="6" to="/hadist/darimi">
-            <Card bg="#7f5539">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Darimi</NameHadist>
+                <NameHadist>Hadist Riwayat Darimi</NameHadist>
             </Card>
         </Href>
         <Href key="7" to="/hadist/ahmad">
-            <Card bg="#dda15e">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Ahmad</NameHadist>
+                <NameHadist>Hadist Riwayat Ahmad</NameHadist>
             </Card>
         </Href>
         <Href key="8" to="/hadist/abu-daud">
-            <Card bg="#9c6644">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Abu Daud</NameHadist>
+                <NameHadist>Hadist Riwayat Abu Daud</NameHadist>
             </Card>
         </Href>
         <Href key="9" to="/hadist/malik">
-            <Card bg="#774936">
+            <Card>
                 <HadistIcon />
-                <NameHadist>HR. Malik</NameHadist>
+                <NameHadist>Hadist Riwayat Malik</NameHadist>
             </Card>
         </Href>
         

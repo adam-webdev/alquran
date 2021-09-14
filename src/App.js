@@ -10,7 +10,6 @@ import DaftarSurah from './components/surah/daftar-surah';
 import Tersimpan from './components/tersimpan/tersimpan';
 import GlobalStyle  from './globalStyle';
 import Doa from './components/doa/doa';
-import Coba from './components/coba';
 
 
 function ScrollToTop() {
@@ -32,7 +31,6 @@ const Routing = () => {
       <Route  path='/detail-surah/:id/' component={DetailSurah} />
       <Route path='/favorite' component={Favorite} />
       <Route path='/pengaturan' component={Bookmark} />
-      <Route path='/coba' component={Coba} />
       <Route exact path='/hadist' component={Hadist} />
       <Route path='/hadist/:books' component={DetailHadist} />
       <Route exact path='/doa' component={Doa} />
