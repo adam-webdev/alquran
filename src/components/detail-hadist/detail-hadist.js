@@ -253,7 +253,7 @@ function DetailHadist(){
                     <Flex>
                     
                     <a href={"#" + number}>
-                    <Select  value={number ? number : 1} onChange={(e) => handlechange(e)} width="100px">
+                    <Select value={number ? number : 1} onChange={(e) => handlechange(e)} width="100px">
                         {
                             hadist && hadist.hadiths.map((hadith,index) =>{
                                 return <option key={index} value={hadith.number}>Nomor {hadith.number}</option> 
@@ -305,38 +305,37 @@ function DetailHadist(){
                 ):( 
                     loading ? ( <Skeleton width="100%" height="300px" amount={2}/>): 
                     ( 
-                        hadist && hadist.hadiths.map((hadith,index) => {
-                        return <>
-                            <Card m_top="30px" key={index} id={hadith.number}>
-                                <DivShareIcon>
-                                    <Share onClick={handleShare}  />
-                                    <span></span>
-                                    <span></span>
-                                </DivShareIcon>
-                                { share ? (
-                                    <SharedIcon left="390px" top="35px">
-                                        <FacebookShareButton 
-                                        quote="."
-                                        onClick={handleShare} url="http://localhost:3000">
-                                            <FacebookIcon size={24} round={true}/> 
-                                        </FacebookShareButton>
-                                        <WhatsappShareButton url="http://localhost:3000/detail-surah/2" onClick={handleShare}>
-                                            <WhatsappIcon size={24} round={true}/>
-                                        </WhatsappShareButton>
-                                        <TwitterShareButton onClick={handleShare}>
-                                            <TwitterIcon size={24} round={true}/>
-                                        </TwitterShareButton>
-                                        <TelegramShareButton onClick={handleShare}>
-                                            <TelegramIcon size={24} round={true}/>
-                                        </TelegramShareButton>
-                                    </SharedIcon>
-                                ): ''}
-                                <TextQuran>{hadith.arab}</TextQuran>
-                                <Text>{hadith.id}</Text>
-                                <NameHadist><i> {hadist.name} Nomor {hadith.number}</i></NameHadist>
-                            </Card>
-                            </>
-                        })
+                        hadist && hadist.hadiths.map((hadith,index) => (
+                                <Card m_top="30px" key={index} id={hadith.number}>
+                                    <DivShareIcon>
+                                        <Share onClick={handleShare}  />
+                                        <span></span>
+                                        <span></span>
+                                    </DivShareIcon>
+                                    { share ? (
+                                        <SharedIcon left="390px" top="35px">
+                                            <FacebookShareButton 
+                                            quote="."
+                                            onClick={handleShare} url="http://localhost:3000">
+                                                <FacebookIcon size={24} round={true}/> 
+                                            </FacebookShareButton>
+                                            <WhatsappShareButton url="http://localhost:3000/detail-surah/2" onClick={handleShare}>
+                                                <WhatsappIcon size={24} round={true}/>
+                                            </WhatsappShareButton>
+                                            <TwitterShareButton onClick={handleShare}>
+                                                <TwitterIcon size={24} round={true}/>
+                                            </TwitterShareButton>
+                                            <TelegramShareButton onClick={handleShare}>
+                                                <TelegramIcon size={24} round={true}/>
+                                            </TelegramShareButton>
+                                        </SharedIcon>
+                                    ): ''}
+                                    <TextQuran>{hadith.arab}</TextQuran>
+                                    <Text>{hadith.id}</Text>
+                                    <NameHadist><i> {hadist.name} Nomor {hadith.number}</i></NameHadist>
+                                </Card>
+                            
+                        ))
 
                     )
                 )

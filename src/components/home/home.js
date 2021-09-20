@@ -200,7 +200,7 @@ const Home = () => {
         // }
         getKota()
         return() => {
-            getKota()
+            isOpen(!open);
         }
     },[])
 

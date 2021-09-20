@@ -9,11 +9,6 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
-<<<<<<< HEAD
-    "chokidar": "^3.5.2",
-=======
-    "fast-glob": "^3.2.7",
->>>>>>> 46872c4f229b9ced53dfcf1788c06f74c2b57ff3
     "json-loader": "^0.5.7",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",

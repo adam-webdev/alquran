@@ -12,15 +12,6 @@ import GlobalStyle  from './globalStyle';
 import Doa from './components/doa/doa';
 
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
 
 const Routing = () => {
   return(
@@ -41,9 +32,8 @@ function App() {
 
   return (
     <Router>
-      <ScrollToTop />
       <GlobalStyle />
-        <Routing />
+      <Routing />
     </Router>
   );
 }
